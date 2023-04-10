@@ -1,0 +1,1 @@
+export type { GetResponse } from "next-json-api";

@@ -3,14 +3,14 @@ lockfileVersion: 5.4
 specifiers:
   '@changesets/cli': ^2.26.1
   next: ^13.0.0
-  next-json-api: ^2.0.1
+  next-json-api: ^2.1.0
   rome: ^12.0.0
   scriptful: ^1.2.1
   typescript: ^5.0.4
   zod: ^3.21.4
 
 dependencies:
-  next-json-api: 2.0.1_next@13.3.0
+  next-json-api: 2.1.0_next@13.3.0
   zod: 3.21.4
 
 devDependencies:
@@ -1392,8 +1392,8 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  /next-json-api/2.0.1_next@13.3.0:
-    resolution: {integrity: sha512-p6VlN03YysYBvakpLjKhKckvVrKJLuTfBcIMMtJgvgwweYSDIvS7t1ROfKl8TT4Py/KaHSVURqcniEkpKTowag==}
+  /next-json-api/2.1.0_next@13.3.0:
+    resolution: {integrity: sha512-BhyYqpdA4YDmFd5nXmpk0t0HXBQxT7EzIF4IQTyAUH+M37LW0OcZANUc9NjSDKgi8Q/IPiq9ErMIfrwu2UPkEA==}
     peerDependencies:
       next: ^13.0.0
     dependencies:

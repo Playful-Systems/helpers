@@ -23,6 +23,6 @@ export const ListUsersHandler = <Item extends object>(config: ListUsersConfig<It
       table: {
         columns: config.columns,
       }
-    }
+    } as const
   })
 }

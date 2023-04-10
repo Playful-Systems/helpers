@@ -21,7 +21,7 @@
     "zod": "^3.21.4"
   },
   "dependencies": {
-    "next-json-api": "^2.0.1",
+    "next-json-api": "^2.1.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {
