@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.0.5
+
+### Patch Changes
+
+- aba5949: can't use paths without a build step
+
 ## 0.0.4
 
 ### Patch Changes
