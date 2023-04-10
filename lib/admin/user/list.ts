@@ -1,5 +1,5 @@
 import { JsonHandler } from "next-json-api";
-import { checkAuthorisationHeader } from "@/checkAuthorisationHeader";
+import { checkAuthorisationHeader } from "../../checkAuthorisationHeader";
 
 type ListUsersConfig<Item extends object> = {
   api_key: string;
