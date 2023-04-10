@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.0.4
+
+### Patch Changes
+
+- 7e1e124: update next-json-api
+
 ## 0.0.3
 
 ### Patch Changes
