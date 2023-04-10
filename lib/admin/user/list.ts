@@ -1,17 +1,17 @@
 import { JsonHandler } from "next-json-api";
 import { checkAuthorisationHeader } from "@/checkAuthorisationHeader";
 
-type ListUsersConfig = {
+type ListUsersConfig<Item extends object> = {
   api_key: string;
-  users: () => Promise<Array<Record<string, string>>>;
+  users: () => Promise<Array<Item>>;
   columns: Array<{
-    name: string;
+    name: keyof Item;
     label: string;
     type: "string" | "number" | "date" | "boolean";
   }>;
 }
 
-export const ListUsers = (config: ListUsersConfig) => {
+export const ListUsersHandler = <Item extends object>(config: ListUsersConfig<Item>) => {
   return JsonHandler(async (req, res) => {
     checkAuthorisationHeader(req, config.api_key);
 
