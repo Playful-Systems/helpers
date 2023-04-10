@@ -1,0 +1,34 @@
+{
+  "name": "@playful-systems/helpers",
+  "version": "0.0.1",
+  "description": "shared helpers",
+  "private": false,
+  "scripts": {
+    "build": "scriptful build",
+    "dev": "scriptful dev",
+    "typecheck": "scriptful typecheck",
+    "release": "scriptful release",
+    "new-version": "scriptful new-version"
+  },
+  "sideEffects": false,
+  "files": [
+    "lib"
+  ],
+  "types": "./empty.d.ts",
+  "packageManager": "pnpm@7.27.1",
+  "peerDependencies": {
+    "next": "^13.0.0",
+    "zod": "^3.21.4"
+  },
+  "dependencies": {
+    "next-json-api": "^2.0.1",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.26.1",
+    "next": "^13.0.0",
+    "rome": "^12.0.0",
+    "scriptful": "^1.2.1",
+    "typescript": "^5.0.4"
+  }
+}

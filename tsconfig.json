@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "strict": true,
+    "paths": {
+      "@/*": [
+        "./lib/*"
+      ]
+    }
+  },
+  "include": [
+    "lib"
+  ]
+}
