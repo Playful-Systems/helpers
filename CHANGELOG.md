@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.2.0
+
+### Minor Changes
+
+- 03bf699: Finish writing all api endpoints for users
+
 ## 0.1.0
 
 ### Minor Changes
