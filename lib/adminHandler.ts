@@ -21,12 +21,8 @@ type Routes = Record<string, Route>;
 
 export const adminHandler = <UserItem extends object>(config: AdminConfig<UserItem>) => {
 
-  const adminConfig = { ...defaultConfig, ...config };
-
-  const routes: Routes = {
-    "/hello": async (req, res) => res.json({ hello: "world" }),
-    ...(adminConfig.features?.users ? registerUserHandlers(adminConfig, adminConfig.features.users) : {})
-  };
+  const adminConfig = mergeConfigs<UserItem>(config);
+  const routes = generateRoutes<UserItem>(adminConfig);
 
   return async (req: NextApiRequest, res: NextApiResponse) => {
 
@@ -41,13 +37,34 @@ export const adminHandler = <UserItem extends object>(config: AdminConfig<UserIt
     const url = new URL(req.url, `http://${req.headers.host ?? "localhost"}`);
 
     // find the route
-    const handler = routes[url.pathname.replace(adminConfig.route, '')]
+    const handler = routes[url.pathname.replace(adminConfig.route, '') as "/hello"]
 
     if (!handler) {
       return res.status(404).json({ error: "Route Not Found" })
     }
 
-    await handler(req, res, url);
-
+    try {
+      await handler(req, res, url);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        return res.status(500).json({ error: error.message })
+      }
+      return res.status(500).json({ error: "Unknown Error" })
+    }
   }
 }
+
+function mergeConfigs<UserItem extends object>(config: AdminConfig<UserItem>) {
+  return { ...defaultConfig, ...config };
+}
+
+type FullConfig<UserItem extends object> = ReturnType<typeof mergeConfigs<UserItem>>;
+
+function generateRoutes<UserItem extends object>(adminConfig: FullConfig<UserItem>) {
+  return {
+    "/hello": async (req, res, url) => res.json({ hello: "world" }),
+    ...(adminConfig.features?.users ? registerUserHandlers(adminConfig, adminConfig.features.users) : {})
+  } satisfies Routes;
+}
+
+export type GeneratedRoutes = ReturnType<typeof generateRoutes>;

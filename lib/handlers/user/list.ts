@@ -1,7 +1,7 @@
 import type { AppConfig } from "../../adminHandler";
 import type { UsersConfig } from ".";
-import { z } from "zod";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { z } from "zod";
 import { parseParams } from "../../parseParams";
 
 const paramsSchema = z.object({
@@ -10,6 +10,8 @@ const paramsSchema = z.object({
   direction: z.union([z.literal("forwards"), z.literal("backwards")]).optional().default("forwards")
 })
 
+export type ListUsersParams = z.input<typeof paramsSchema>;
+
 function processResults<UserItem extends object>(
   result: UserItem[],
   direction: 'forwards' | 'backwards',
@@ -17,7 +19,6 @@ function processResults<UserItem extends object>(
   cursorKey: keyof UserItem,
   amount: number,
 ) {
-  console.log(result);
   const hasExtraResult = result.length > amount;
 
   if (direction === 'forwards') {
@@ -59,12 +60,11 @@ export function ListUsers<UserItem extends object>(app: AppConfig, config: Users
         columns
       },
       cursor,
-      params
-    }
+    } as const
 
     res.json(response);
     return response;
   }
 }
 
-export type UsersListResponse = Awaited<ReturnType<ReturnType<typeof ListUsers>>>
+export type ListUsersResponse = Awaited<ReturnType<ReturnType<typeof ListUsers>>>

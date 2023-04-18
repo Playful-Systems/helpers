@@ -1,36 +1,27 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { AppConfig } from "../../adminHandler";
 import type { UsersConfig } from ".";
-import { z } from "zod";
+import { createUserParser } from "./createUserParser";
+
+export type CreateUserParams = {};
 
 export function CreateUser<UserItem extends object>(app: AppConfig, config: UsersConfig<UserItem>) {
 
-  const bodySchema = z.object(config.columns
-    .reduce((acc, column) => {
-      acc[column.name] = column.schema;
-      return acc;
-    }, {} as Record<keyof UserItem, z.ZodType>)
-  )
+  const bodyParser = createUserParser(config.columns);
 
   return async function CreateUsersHandler(req: NextApiRequest, res: NextApiResponse, url: URL) {
 
-    const body = bodySchema.parse(req.body);
-
-    console.log(body)
-
-    // @ts-ignore this shit is bugging
+    const body = await bodyParser(req.body);
     const result = await config.createUser(body);
 
     const response = {
       version: "1",
       result,
-      body
-    }
+    } as const
 
     res.json(response);
-
     return response;
   }
 }
 
-export type UsersListResponse = Awaited<ReturnType<ReturnType<typeof CreateUser>>>
+export type CreateUserResponse = Awaited<ReturnType<ReturnType<typeof CreateUser>>>
