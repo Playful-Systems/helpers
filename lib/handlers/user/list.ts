@@ -17,32 +17,20 @@ function processResults<UserItem extends object>(
   cursorKey: keyof UserItem,
   amount: number,
 ) {
-  console.log(result)
+  console.log(result);
   const hasExtraResult = result.length > amount;
 
   if (direction === 'forwards') {
     const viewableResults = result.slice(0, amount);
-    const nextResult = result[amount];
-    if (!nextResult) {
-      throw new Error('No next result');
-    }
-    const nextCursor = hasExtraResult ? nextResult[cursorKey] : null;
+    const nextCursor = hasExtraResult ? result[amount]?.[cursorKey] ?? null : null;
     const newCursor = {
       back: cursor === 1 ? null : cursor,
       next: nextCursor,
     };
     return { viewableResults, cursor: newCursor };
   } else {
-    const nextResult = result[amount];
-    if (!nextResult) {
-      throw new Error('No next result');
-    }
-    const prevCursor = hasExtraResult ? nextResult[cursorKey] : null;
-    const firstResult = result[0];
-    if (!firstResult) {
-      throw new Error('No first result');
-    }
-    const nextCursor = result.length > 0 ? firstResult[cursorKey] : null;
+    const prevCursor = hasExtraResult ? result[amount - 1]?.[cursorKey] ?? null : null;
+    const nextCursor = result.length > 0 ? result[0]?.[cursorKey] ?? null : null;
     const newCursor = {
       back: prevCursor,
       next: nextCursor,
