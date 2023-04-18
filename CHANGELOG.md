@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.1.0
+
+### Minor Changes
+
+- e2abe23: Get the pagination working
+
 ## 0.0.5
 
 ### Patch Changes
