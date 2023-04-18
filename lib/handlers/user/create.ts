@@ -18,6 +18,7 @@ export function CreateUser<UserItem extends object>(app: AppConfig, config: User
 
     console.log(body)
 
+    // @ts-ignore this shit is bugging
     const result = await config.createUser(body);
 
     const response = {
