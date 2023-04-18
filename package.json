@@ -21,7 +21,6 @@
     "zod": "^3.21.4"
   },
   "dependencies": {
-    "find-my-way": "^7.6.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {

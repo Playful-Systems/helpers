@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import Router from "find-my-way";
 import { type UsersConfig, registerUserHandlers } from './handlers/user';
 
 export type AppConfig = {
@@ -17,35 +16,38 @@ const defaultConfig = {
   route: "/api/admin"
 }
 
+type Route = (req: NextApiRequest, res: NextApiResponse, url: URL) => Promise<any>;
+type Routes = Record<string, Route>;
+
 export const adminHandler = <UserItem extends object>(config: AdminConfig<UserItem>) => {
 
   const adminConfig = { ...defaultConfig, ...config };
 
-  const app = Router({
-    defaultRoute: (req, res) => {
-      res.write(JSON.stringify({ error: "Not found" }));
-      res.statusCode = 404;
-      res.end();
-    },
-  });
+  const routes: Routes = {
+    "/hello": async (req, res) => res.json({ hello: "world" }),
+    ...(adminConfig.features?.users ? registerUserHandlers(adminConfig, adminConfig.features.users) : {})
+  };
 
-  if (adminConfig.features?.users) {
-    registerUserHandlers(app, adminConfig, adminConfig.features.users)
-  }
-
-  return (req: NextApiRequest, res: NextApiResponse) => {
+  return async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (req.headers.authorization !== `Bearer ${adminConfig.api_key}`) {
-      res.write(JSON.stringify({ error: "Bad Api Key" }))
-      res.statusCode = 403;
-      res.end();
+      return res.status(403).json({ error: "Bad Api Key" })
     }
 
-    // re-write the url to remove the admin route
-    req.url = (req.url ?? adminConfig + "/").replace(adminConfig.route, "");
+    if (!req.url) {
+      throw new Error("No url found");
+    }
+  
+    const url = new URL(req.url, `http://${req.headers.host ?? "localhost"}`);
 
     // find the route
-    app.lookup(req, res);
+    const handler = routes[url.pathname.replace(adminConfig.route, '')]
+
+    if (!handler) {
+      return res.status(404).json({ error: "Route Not Found" })
+    }
+
+    await handler(req, res, url);
 
   }
 }

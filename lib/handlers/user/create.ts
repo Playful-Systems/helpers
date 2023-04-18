@@ -1,25 +1,20 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { AppConfig } from "../../adminHandler";
 import type { UsersConfig } from ".";
-import { parseReq } from "../../parseReq";
 import { z } from "zod";
 
 export function CreateUser<UserItem extends object>(app: AppConfig, config: UsersConfig<UserItem>) {
 
-  const schemas = {
-    params: z.object({}),
-    body: z.object(config.columns
-      .reduce((acc, column) => {
-        acc[column.name] = column.schema;
-        return acc;
-      // }, {} as Record<keyof UserItem, z.ZodType>)
-      }, {} as { [key: keyof UserItem]: z.ZodType })
-    )
-  }
+  const bodySchema = z.object(config.columns
+    .reduce((acc, column) => {
+      acc[column.name] = column.schema;
+      return acc;
+    }, {} as Record<keyof UserItem, z.ZodType>)
+  )
 
-  return async function CreateUsersHandler(req: NextApiRequest, res: NextApiResponse) {
+  return async function CreateUsersHandler(req: NextApiRequest, res: NextApiResponse, url: URL) {
 
-    const { url, params, body } = parseReq(req, schemas);
+    const body = bodySchema.parse(req.body);
 
     console.log(body)
 
@@ -27,15 +22,11 @@ export function CreateUser<UserItem extends object>(app: AppConfig, config: User
 
     const response = {
       version: "1",
-      // result: result,
-      // table: {
-      //   columns: config.columns
-      // },
-      params
+      result,
+      body
     }
 
-    res.write(JSON.stringify(response));
-    res.end();
+    res.json(response);
 
     return response;
   }
