@@ -9,7 +9,7 @@ import { DeleteUser } from "./delete";
 import { CreateUser } from "./create";
 
 type UserId = number;
-type ColumnType = "string" | "number" | "date" | "boolean" | "img"
+export type ColumnType = "string" | "number" | "date" | "boolean" | "img"
 export type Column<Item extends object, name extends keyof Item = keyof Item, schema extends z.ZodType = z.ZodType> = {
   name: name;
   label: string;
