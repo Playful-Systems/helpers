@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.2.2
+
+### Patch Changes
+
+- 9bad451: export out a type
+
 ## 0.2.1
 
 ### Patch Changes
