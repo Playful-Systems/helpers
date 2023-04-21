@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.2.1
+
+### Patch Changes
+
+- 933c85b: update next version
+
 ## 0.2.0
 
 ### Minor Changes
