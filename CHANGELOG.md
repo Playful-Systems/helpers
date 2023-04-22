@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.2.3
+
+### Patch Changes
+
+- 6718268: add actions type
+
 ## 0.2.2
 
 ### Patch Changes
