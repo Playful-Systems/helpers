@@ -57,9 +57,11 @@ export function ListUsers<UserItem extends object>(app: AppConfig, config: Users
       version: "1",
       result: viewableResults,
       table: {
-        columns
+        columns,
+        userIdKey: config.cursor,
       },
       cursor,
+
     } as const
 
     res.json(response);
