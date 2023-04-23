@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.2.4
+
+### Patch Changes
+
+- edeed01: pass cursorkey through to frontend
+
 ## 0.2.3
 
 ### Patch Changes
