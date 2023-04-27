@@ -1,5 +1,15 @@
 # @playful-systems/helpers
 
+## 0.3.0
+
+### Minor Changes
+
+- 6503200: Don't transform the userId to a number
+
+### Patch Changes
+
+- 518ce63: userId can be a string or a number
+
 ## 0.2.4
 
 ### Patch Changes
