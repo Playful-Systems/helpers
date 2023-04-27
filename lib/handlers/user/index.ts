@@ -8,7 +8,7 @@ import { UpdateUser } from "./update";
 import { DeleteUser } from "./delete";
 import { CreateUser } from "./create";
 
-type UserId = number;
+type UserId = string | number;
 export type ColumnType = "string" | "number" | "date" | "boolean" | "img" | "actions"
 export type Column<Item extends object, name extends keyof Item = keyof Item, schema extends z.ZodType = z.ZodType> = {
   name: name;
