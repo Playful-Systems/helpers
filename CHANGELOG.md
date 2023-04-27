@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.3.2
+
+### Patch Changes
+
+- 8dcaed5: should fix userId issue
+
 ## 0.3.1
 
 ### Patch Changes
