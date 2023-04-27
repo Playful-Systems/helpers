@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.3.1
+
+### Patch Changes
+
+- d48840d: need to update the zod schemas to reflect the changes
+
 ## 0.3.0
 
 ### Minor Changes
