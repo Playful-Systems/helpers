@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
-import { userId, type UsersConfig } from ".";
+import type { UsersConfig } from ".";
 import type { AppConfig } from "../../adminHandler";
 import { parseParams } from "../../parseParams";
+import { userId } from "./UserId";
 
 const paramsSchema = z.object({
   userId
