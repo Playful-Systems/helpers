@@ -1,12 +1,12 @@
-import type { AppConfig } from "../../adminHandler";
-import type { UsersConfig } from ".";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
+import { userId, type UsersConfig } from ".";
+import type { AppConfig } from "../../adminHandler";
 import { parseParams } from "../../parseParams";
 import { createUserParser } from "./createUserParser";
 
 const paramsSchema = z.object({
-  userId: z.string()
+  userId
 })
 
 export type UpdateUserParams = z.input<typeof paramsSchema>;

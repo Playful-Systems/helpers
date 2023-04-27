@@ -1,5 +1,5 @@
 import type { AppConfig } from "../../adminHandler";
-import type { z } from 'zod';
+import { z } from 'zod';
 
 import { ListUsers } from "./list";
 import { ViewUser } from "./view";
@@ -8,7 +8,8 @@ import { UpdateUser } from "./update";
 import { DeleteUser } from "./delete";
 import { CreateUser } from "./create";
 
-type UserId = string | number;
+export const userId = z.union([z.string(), z.number()])
+export type UserId = z.infer<typeof userId>
 export type ColumnType = "string" | "number" | "date" | "boolean" | "img" | "actions"
 export type Column<Item extends object, name extends keyof Item = keyof Item, schema extends z.ZodType = z.ZodType> = {
   name: name;
