@@ -6,7 +6,7 @@ import { parseParams } from "../../parseParams";
 import { createUserParser } from "./createUserParser";
 
 const paramsSchema = z.object({
-  userId: z.string().transform((userId) => Number(userId))
+  userId: z.string()
 })
 
 export type UpdateUserParams = z.input<typeof paramsSchema>;

@@ -5,7 +5,7 @@ import { z } from "zod";
 import { parseParams } from "../../parseParams";
 
 const paramsSchema = z.object({
-  userId: z.string().transform((userId) => Number(userId))
+  userId: z.string()
 })
 
 export type ViewUserParams = z.input<typeof paramsSchema>;
