@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.4.0
+
+### Minor Changes
+
+- f8298d7: add count endpoint to users
+
 ## 0.3.2
 
 ### Patch Changes
