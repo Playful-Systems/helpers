@@ -8,6 +8,7 @@ import { SearchUsers } from "./search";
 import { UpdateUser } from "./update";
 import { DeleteUser } from "./delete";
 import { CreateUser } from "./create";
+import { CountUsers } from "./count";
 
 export type ColumnType = "string" | "number" | "date" | "boolean" | "img" | "actions"
 export type Column<Item extends object, name extends keyof Item = keyof Item, schema extends z.ZodType = z.ZodType> = {
@@ -26,6 +27,7 @@ export type UsersConfig<Item extends object> = {
   updateUser: (userId: UserId, data: Partial<Item>) => Promise<void>;
   deleteUser: (userId: UserId) => Promise<void>;
   createUser: (data: Item) => Promise<UserId>;
+  countUsers: () => Promise<number>;
 }
 
 export const registerUserHandlers = <Item extends object>(
@@ -39,7 +41,8 @@ export const registerUserHandlers = <Item extends object>(
     "/users/search": SearchUsers(config, feature),
     "/users/update": UpdateUser(config, feature),
     "/users/delete": DeleteUser(config, feature),
-    "/users/create": CreateUser(config, feature)
+    "/users/create": CreateUser(config, feature),
+    "/users/count": CountUsers(config, feature)
   }
 
 }

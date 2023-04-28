@@ -9,6 +9,7 @@ import type { SearchUsersParams, SearchUsersResponse } from "./handlers/user/sea
 import type { UpdateUserParams, UpdateUserResponse } from "./handlers/user/update";
 import type { DeleteUserParams, DeleteUserResponse } from "./handlers/user/delete";
 import type { CreateUserParams, CreateUserResponse } from "./handlers/user/create";
+import type { CountUsersResponse } from "./handlers/user/count";
 
 export const buildApi = (axios: AxiosInstance) => ({
   "/hello": () => axios.get("/hello"),
@@ -18,6 +19,7 @@ export const buildApi = (axios: AxiosInstance) => ({
   "/users/update": (params: UpdateUserParams, body: UserObject) => axios.patch<OrError<UpdateUserResponse>>("/users/update", body, { params }),
   "/users/delete": (params: DeleteUserParams) => axios.delete<OrError<DeleteUserResponse>>("/users/delete", { params }),
   "/users/create": (params: CreateUserParams, body: UserObject) => axios.post<OrError<CreateUserResponse>>("/users/create", body, { params }),
+  "/users/count": () => axios.get<OrError<CountUsersResponse>>("/users/count"),
 } satisfies Record<keyof GeneratedRoutes, (params: any, body: any) => Promise<AxiosResponse<OrError<any>>>>);
 
 type OrError<T> = T | { error: string };
