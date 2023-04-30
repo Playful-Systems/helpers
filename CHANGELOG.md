@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.6.0
+
+### Minor Changes
+
+- 126a1fb: use next-json-api
+
 ## 0.5.0
 
 ### Minor Changes
