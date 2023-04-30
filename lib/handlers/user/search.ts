@@ -1,30 +1,36 @@
-import type { AppConfig } from "../../adminHandler";
-import type { UsersConfig } from ".";
-import type { NextApiRequest, NextApiResponse } from "next";
+import { ApiError, JsonHandler, type GetResponse } from "next-json-api";
 import { z } from "zod";
+import type { UsersConfig } from ".";
+import type { AppConfig } from "../../adminHandler";
+import { catcher } from "../../catcher";
+import { getUrl } from "../../getUrl";
 import { parseParams } from "../../parseParams";
 
 const paramsSchema = z.object({
   query: z.string().min(1).max(100),
-})
+});
 
 export type SearchUsersParams = z.input<typeof paramsSchema>;
 
 export function SearchUsers<UserItem extends object>(app: AppConfig, config: UsersConfig<UserItem>) {
-  return async function SearchUsersHandler(req: NextApiRequest, res: NextApiResponse, url: URL) {
+  return JsonHandler(async (req, res) => {
+    const params = parseParams(getUrl(req), paramsSchema);
 
-    const params = parseParams(url, paramsSchema);
+    if (params instanceof Error) {
+      throw new ApiError("Bad Request (400)", params.message);
+    }
 
-    const result = await config.searchUsers(params.query);
+    const result = await catcher(config.searchUsers(params.query));
 
-    const response = {
+    if (result instanceof Error) {
+      throw new ApiError("Bad Gateway (502)", "Failed to search users through admin api");
+    }
+
+    return {
       version: "1",
       result,
-    } as const
-
-    res.json(response);
-    return undefined as unknown as typeof response;
-  }
+    } as const;
+  });
 }
 
-export type SearchUsersResponse = Awaited<ReturnType<ReturnType<typeof SearchUsers>>>
+export type SearchUsersResponse = GetResponse<ReturnType<typeof SearchUsers>>;

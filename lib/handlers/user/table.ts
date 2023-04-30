@@ -1,24 +1,19 @@
-import type { AppConfig } from "../../adminHandler";
+import { JsonHandler, type GetResponse } from "next-json-api";
 import type { UsersConfig } from ".";
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { AppConfig } from "../../adminHandler";
 
 export function TableDetails<UserItem extends object>(app: AppConfig, config: UsersConfig<UserItem>) {
-
   const columns = config.columns.map(({ schema, ...column }) => column);
 
-  return async function TableDetailsHandler(req: NextApiRequest, res: NextApiResponse, url: URL) {
-
-    const response = {
+  return JsonHandler(async () => {
+    return {
       version: "1",
       result: {
         columns,
         userIdKey: config.cursor,
       },
-    } as const
-
-    res.json(response);
-    return undefined as unknown as typeof response;
-  }
+    } as const;
+  });
 }
 
-export type TableDetailsResponse = Awaited<ReturnType<ReturnType<typeof TableDetails>>>
+export type TableDetailsResponse = GetResponse<ReturnType<typeof TableDetails>>;

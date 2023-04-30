@@ -1,27 +1,38 @@
-import type { AppConfig } from "../../adminHandler";
 import type { UsersConfig } from ".";
-import type { NextApiRequest, NextApiResponse } from "next";
-import { z } from "zod";
+import type { AppConfig } from "../../adminHandler";
+import { catcher } from "../../catcher";
+import { getUrl } from "../../getUrl";
 import { parseParams } from "../../parseParams";
+import { ApiError, type GetResponse, JsonHandler } from "next-json-api";
+import { z } from "zod";
 
 const paramsSchema = z.object({
-  cursor: z.string().optional().transform((userId) => Number(userId ?? 1)),
-  amount: z.string().optional().transform((amount) => Number(amount ?? 20)),
-  direction: z.union([z.literal("forwards"), z.literal("backwards")]).optional().default("forwards")
-})
+  cursor: z
+    .string()
+    .optional()
+    .transform((userId) => Number(userId ?? 1)),
+  amount: z
+    .string()
+    .optional()
+    .transform((amount) => Number(amount ?? 20)),
+  direction: z
+    .union([z.literal("forwards"), z.literal("backwards")])
+    .optional()
+    .default("forwards"),
+});
 
 export type ListUsersParams = z.input<typeof paramsSchema>;
 
 function processResults<UserItem extends object>(
   result: UserItem[],
-  direction: 'forwards' | 'backwards',
+  direction: "forwards" | "backwards",
   cursor: number,
   cursorKey: keyof UserItem,
   amount: number,
 ) {
   const hasExtraResult = result.length > amount;
 
-  if (direction === 'forwards') {
+  if (direction === "forwards") {
     const viewableResults = result.slice(0, amount);
     const nextCursor = hasExtraResult ? result[amount]?.[cursorKey] ?? null : null;
     const newCursor = {
@@ -42,24 +53,33 @@ function processResults<UserItem extends object>(
 }
 
 export function ListUsers<UserItem extends object>(app: AppConfig, config: UsersConfig<UserItem>) {
-  return async function ListUsersHandler(req: NextApiRequest, res: NextApiResponse, url: URL) {
+  return JsonHandler(async (req, res) => {
+    const params = parseParams(getUrl(req), paramsSchema);
 
-    const params = parseParams(url, paramsSchema);
+    if (params instanceof Error) {
+      throw new ApiError("Bad Request (400)", params.message);
+    }
 
-    const result = await config.listUsers(params.amount, params.cursor, params.direction);
+    const result = await catcher(config.listUsers(params.amount, params.cursor, params.direction));
 
-    const { viewableResults, cursor } = processResults(result, params.direction, params.cursor, config.cursor, params.amount);
+    if (result instanceof Error) {
+      throw new ApiError("Bad Gateway (502)", "Failed to list users through admin api");
+    }
 
-    const response = {
+    const { viewableResults, cursor } = processResults(
+      result,
+      params.direction,
+      params.cursor,
+      config.cursor,
+      params.amount,
+    );
+
+    return {
       version: "1",
       result: viewableResults,
       cursor,
-
-    } as const
-
-    res.json(response);
-    return undefined as unknown as typeof response;
-  }
+    } as const;
+  });
 }
 
-export type ListUsersResponse = Awaited<ReturnType<ReturnType<typeof ListUsers>>>
+export type ListUsersResponse = GetResponse<ReturnType<typeof ListUsers>>;

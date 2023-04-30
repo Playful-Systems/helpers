@@ -1,27 +1,32 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import type { AppConfig } from "../../adminHandler";
+import { ApiError, JsonHandler, type GetResponse } from "next-json-api";
 import type { UsersConfig } from ".";
+import type { AppConfig } from "../../adminHandler";
+import { catcher } from "../../catcher";
 import { createUserParser } from "./createUserParser";
 
 export type CreateUserParams = {};
 
 export function CreateUser<UserItem extends object>(app: AppConfig, config: UsersConfig<UserItem>) {
-
   const bodyParser = createUserParser(config.columns);
 
-  return async function CreateUsersHandler(req: NextApiRequest, res: NextApiResponse, url: URL) {
+  return JsonHandler(async (req) => {
+    const body = await catcher(bodyParser(req.body));
 
-    const body = await bodyParser(req.body);
-    const result = await config.createUser(body);
+    if (body instanceof Error) {
+      throw new ApiError("Bad Request (400)", "Failed to parse and validate the body");
+    }
 
-    const response = {
+    const result = await catcher(config.createUser(body));
+
+    if (result instanceof Error) {
+      throw new ApiError("Bad Gateway (502)", "Failed to create user in admin api");
+    }
+
+    return {
       version: "1",
       result,
-    } as const
-
-    res.json(response);
-    return undefined as unknown as typeof response;
-  }
+    } as const;
+  });
 }
 
-export type CreateUserResponse = Awaited<ReturnType<ReturnType<typeof CreateUser>>>
+export type CreateUserResponse = GetResponse<ReturnType<typeof CreateUser>>;

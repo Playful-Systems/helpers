@@ -12,16 +12,18 @@ import type { CreateUserParams, CreateUserResponse } from "./handlers/user/creat
 import type { CountUsersResponse } from "./handlers/user/count";
 import type { TableDetailsResponse } from "./handlers/user/table";
 
-export const buildApi = (axios: AxiosInstance) => ({
-  "/hello": () => axios.get("/hello"),
-  "/users/list": (params: ListUsersParams) => axios.get<OrError<ListUsersResponse>>("/users/list", { params }),
-  "/users/view": (params: ViewUserParams) => axios.get<OrError<ViewUserResponse>>("/users/view", { params }),
-  "/users/search": (params: SearchUsersParams) => axios.get<OrError<SearchUsersResponse>>("/users/search", { params }),
-  "/users/update": (params: UpdateUserParams, body: UserObject) => axios.patch<OrError<UpdateUserResponse>>("/users/update", body, { params }),
-  "/users/delete": (params: DeleteUserParams) => axios.delete<OrError<DeleteUserResponse>>("/users/delete", { params }),
-  "/users/create": (params: CreateUserParams, body: UserObject) => axios.post<OrError<CreateUserResponse>>("/users/create", body, { params }),
-  "/users/count": () => axios.get<OrError<CountUsersResponse>>("/users/count"),
-  "/users/table": () => axios.get<OrError<TableDetailsResponse>>("/users/table"),
-} satisfies Record<keyof GeneratedRoutes, (params: any, body: any) => Promise<AxiosResponse<OrError<any>>>>);
-
-type OrError<T> = T | { error: string };
+export const buildApi = (axios: AxiosInstance) =>
+  ({
+    "/hello": () => axios.get("/hello"),
+    "/users/list": (params: ListUsersParams) => axios.get<ListUsersResponse>("/users/list", { params }),
+    "/users/view": (params: ViewUserParams) => axios.get<ViewUserResponse>("/users/view", { params }),
+    "/users/search": (params: SearchUsersParams) => axios.get<SearchUsersResponse>("/users/search", { params }),
+    "/users/update": (params: UpdateUserParams, body: UserObject) =>
+      axios.patch<UpdateUserResponse>("/users/update", body, { params }),
+    "/users/delete": (params: DeleteUserParams) => axios.delete<DeleteUserResponse>("/users/delete", { params }),
+    "/users/create": (params: CreateUserParams, body: UserObject) =>
+      axios.post<CreateUserResponse>("/users/create", body, { params }),
+    "/users/count": () => axios.get<CountUsersResponse>("/users/count"),
+    "/users/table": () => axios.get<TableDetailsResponse>("/users/table"),
+    // rome-ignore lint/suspicious/noExplicitAny: when used in satisfies its fine
+  }) satisfies Record<keyof GeneratedRoutes, (params: any, body: any) => Promise<AxiosResponse<any>>>;

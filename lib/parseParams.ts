@@ -2,12 +2,16 @@ import { z } from "zod";
 
 type EmptyObject = z.AnyZodObject;
 
-export function parseParams<Schema extends EmptyObject>(url: URL, schema: Schema): z.infer<Schema> {
+export function parseParams<Schema extends EmptyObject>(url: URL, schema: Schema): z.infer<Schema> | Error {
   const unValidatedParams: Record<string, string> = {};
 
   for (const [key, value] of url.searchParams) {
     unValidatedParams[key] = value;
   }
 
-  return schema.parse(unValidatedParams);
+  try {
+    return schema.parse(unValidatedParams);
+  } catch (error) {
+    return new Error("the params in the url did not pass validation")
+  }
 }
