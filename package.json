@@ -4,11 +4,13 @@
   "description": "shared helpers",
   "private": false,
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "typecheck": "tsc --noEmit",
-    "release": "pnpm typecheck && pnpm build && pnpm changeset publish",
-    "new-version": "changeset"
+    "build": "scriptful build",
+    "dev": "scriptful dev",
+    "typecheck": "scriptful typecheck",
+    "release": "scriptful release",
+    "new-version": "scriptful new-version",
+    "test:run": "scriptful test:run",
+    "test:dev": "scriptful test:dev"
   },
   "sideEffects": false,
   "files": [
@@ -30,6 +32,7 @@
     "@changesets/cli": "^2.26.1",
     "next": "^13.3.0",
     "rome": "^12.0.0",
+    "scriptful": "^1.2.1",
     "typescript": "^5.0.4"
   }
 }
