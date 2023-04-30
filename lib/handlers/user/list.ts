@@ -42,9 +42,6 @@ function processResults<UserItem extends object>(
 }
 
 export function ListUsers<UserItem extends object>(app: AppConfig, config: UsersConfig<UserItem>) {
-
-  const columns = config.columns.map(({ schema, ...column }) => column);
-
   return async function ListUsersHandler(req: NextApiRequest, res: NextApiResponse, url: URL) {
 
     const params = parseParams(url, paramsSchema);
@@ -56,10 +53,6 @@ export function ListUsers<UserItem extends object>(app: AppConfig, config: Users
     const response = {
       version: "1",
       result: viewableResults,
-      table: {
-        columns,
-        userIdKey: config.cursor,
-      },
       cursor,
 
     } as const

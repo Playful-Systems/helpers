@@ -9,6 +9,7 @@ import { UpdateUser } from "./update";
 import { DeleteUser } from "./delete";
 import { CreateUser } from "./create";
 import { CountUsers } from "./count";
+import { TableDetails } from "./table";
 
 export type ColumnType = "string" | "number" | "date" | "boolean" | "img" | "actions"
 export type Column<Item extends object, name extends keyof Item = keyof Item, schema extends z.ZodType = z.ZodType> = {
@@ -42,7 +43,8 @@ export const registerUserHandlers = <Item extends object>(
     "/users/update": UpdateUser(config, feature),
     "/users/delete": DeleteUser(config, feature),
     "/users/create": CreateUser(config, feature),
-    "/users/count": CountUsers(config, feature)
+    "/users/count": CountUsers(config, feature),
+    "/users/table": TableDetails(config, feature)
   }
 
 }
