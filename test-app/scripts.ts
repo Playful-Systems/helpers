@@ -21,6 +21,7 @@ export default scripts({
         delay: 5_000, // give next a second to start up
       }),
       command({
+        // @ts-ignore we are in node land chill
         run: () => process.exit(0),
         delay: 10_000, // give the tests 10 seconds to run
       }),
