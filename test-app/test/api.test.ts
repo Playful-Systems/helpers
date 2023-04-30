@@ -3,7 +3,7 @@ import { buildApi } from "@playful-systems/helpers/lib/api";
 import { it, expect } from "vitest";
 
 const axios = Axios.create({
-  baseURL: "http://localhost:3000/api/admin",
+  baseURL: "http://0.0.0.0:3000/api/admin",
   headers: {
     authorization: "Bearer test-key",
   },
