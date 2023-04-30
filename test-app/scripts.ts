@@ -18,11 +18,12 @@ export default scripts({
       start,
       command({
         run: "vitest run",
-        delay: 5_000, // give next a second to start up
+        delay: 10_000, // give next a second to start up
+        continueOnFailure: false
       }),
       command({
         run: () => process.exit(0),
-        delay: 10_000, // give the tests 10 seconds to run
+        delay: 20_000, // give the tests 20 seconds to run
       }),
     ]),
   ]),
