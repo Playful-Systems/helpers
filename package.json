@@ -9,6 +9,7 @@
     "typecheck": "scriptful typecheck",
     "release": "scriptful release",
     "new-version": "scriptful new-version",
+    "test:ci": "scriptful test:ci",
     "test:run": "scriptful test:run",
     "test:dev": "scriptful test:dev"
   },
