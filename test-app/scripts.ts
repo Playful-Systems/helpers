@@ -13,7 +13,6 @@ export default scripts({
   build,
   start,
   test: sequential([
-    "pnpm install",
     build,
     parallel([
       start,
