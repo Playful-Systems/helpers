@@ -1,2 +1,2 @@
 # helpers
-shared helpers
+shared helper functions
