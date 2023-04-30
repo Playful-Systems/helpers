@@ -10,7 +10,7 @@ export default adminHandler({
           name: "id",
           label: "ID",
           type: "string",
-          schema: z.string(),
+          schema: z.string().optional(),
         },
         {
           name: "name",
@@ -23,12 +23,6 @@ export default adminHandler({
           label: "Age",
           type: "number",
           schema: z.number().min(0).max(100),
-        },
-        {
-          name: "birthday",
-          label: "Birthday",
-          type: "date",
-          schema: z.date(),
         },
         {
           name: "is_admin",
@@ -50,7 +44,6 @@ export default adminHandler({
             id: "1",
             name: "Bob",
             age: 21,
-            birthday: new Date(),
             is_admin: false,
             avatar: "https://avatars.githubusercontent.com/u/1158253?v=4",
           },
@@ -58,7 +51,6 @@ export default adminHandler({
             id: "2",
             name: "Alice",
             age: 21,
-            birthday: new Date(),
             is_admin: true,
             avatar: "https://avatars.githubusercontent.com/u/1158253?v=4",
           },
@@ -69,7 +61,6 @@ export default adminHandler({
           id: "1",
           name: "Bob",
           age: 21,
-          birthday: new Date(),
           is_admin: false,
           avatar: "https://avatars.githubusercontent.com/u/1158253?v=4",
         };
@@ -80,7 +71,6 @@ export default adminHandler({
             id: "2",
             name: "Alice",
             age: 21,
-            birthday: new Date(),
             is_admin: true,
             avatar: "https://avatars.githubusercontent.com/u/1158253?v=4",
           },
@@ -93,7 +83,7 @@ export default adminHandler({
         return;
       },
       createUser: async (data) => {
-        return "1";
+        return "3";
       },
       countUsers: async () => {
         return 2;
