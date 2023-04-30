@@ -17,7 +17,7 @@ export function TableDetails<UserItem extends object>(app: AppConfig, config: Us
     } as const
 
     res.json(response);
-    return response;
+    return undefined as unknown as typeof response;
   }
 }
 

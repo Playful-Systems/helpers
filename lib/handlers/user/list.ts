@@ -58,7 +58,7 @@ export function ListUsers<UserItem extends object>(app: AppConfig, config: Users
     } as const
 
     res.json(response);
-    return response;
+    return undefined as unknown as typeof response;
   }
 }
 

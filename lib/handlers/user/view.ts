@@ -24,8 +24,8 @@ export function ViewUser<UserItem extends object>(app: AppConfig, config: UsersC
       } as const
   
       res.json(response);
-      return response;
-  }
+      return undefined as unknown as typeof response;
+    }
 }
 
 export type ViewUserResponse = Awaited<ReturnType<ReturnType<typeof ViewUser>>>

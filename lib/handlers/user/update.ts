@@ -29,8 +29,8 @@ export function UpdateUser<UserItem extends object>(app: AppConfig, config: User
         } as const
     
         res.json(response);
-        return response;
-    }
+        return undefined as unknown as typeof response;
+      }
 }
 
 export type UpdateUserResponse = Awaited<ReturnType<ReturnType<typeof UpdateUser>>>

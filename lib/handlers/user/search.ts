@@ -23,7 +23,7 @@ export function SearchUsers<UserItem extends object>(app: AppConfig, config: Use
     } as const
 
     res.json(response);
-    return response;
+    return undefined as unknown as typeof response;
   }
 }
 

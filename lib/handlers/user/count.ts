@@ -15,7 +15,7 @@ export function CountUsers<UserItem extends object>(app: AppConfig, config: User
     } as const
 
     res.json(response);
-    return response;
+    return undefined as unknown as typeof response;
   }
 }
 
