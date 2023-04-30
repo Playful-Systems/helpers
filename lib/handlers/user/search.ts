@@ -7,7 +7,11 @@ import { getUrl } from "../../getUrl";
 import { parseParams } from "../../parseParams";
 
 const paramsSchema = z.object({
-  query: z.string().min(1).max(100),
+  query: z
+    .string()
+    .min(1)
+    .max(100)
+    .transform((query) => decodeURIComponent(query)),
 });
 
 export type SearchUsersParams = z.input<typeof paramsSchema>;
