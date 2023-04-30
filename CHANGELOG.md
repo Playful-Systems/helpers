@@ -1,5 +1,15 @@
 # @playful-systems/helpers
 
+## 0.5.0
+
+### Minor Changes
+
+- 3c56b00: move the table details to its own endpoint
+
+### Patch Changes
+
+- 9ed0a9f: return undefined then "as" it to the type of the response
+
 ## 0.4.0
 
 ### Minor Changes
