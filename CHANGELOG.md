@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.6.1
+
+### Patch Changes
+
+- 73295d4: decode the query param so it can contact wacky characters
+
 ## 0.6.0
 
 ### Minor Changes
