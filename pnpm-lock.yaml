@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@playful-systems/conduit':
-    specifier: ^0.4.1
-    version: 0.4.1
+    specifier: ^0.5.0
+    version: 0.5.0
   next-json-api:
     specifier: ^2.2.0
     version: 2.2.0(next@13.3.0)
@@ -387,8 +387,8 @@ packages:
       fastq: 1.15.0
     dev: true
 
-  /@playful-systems/conduit@0.4.1:
-    resolution: {integrity: sha512-HLwiBxqtvjCgsaBYnjGxRzk/yTqohNVFMR22rlPJekBrHje/L7b+YHSWS/e7jceuwckOOzmKj7pJ9OckO0bMJg==}
+  /@playful-systems/conduit@0.5.0:
+    resolution: {integrity: sha512-P87uxPh40P94o9n0WsF80d+CXO0osTGCnYkssvSbJNIBUHc6qzVhIGcV9aFE+vwiTHVQ478UfN3k0np2VW/A1g==}
     dependencies:
       ramda: 0.29.0
     dev: false
