@@ -15,6 +15,7 @@ import type { TableDetailsResponse } from "./handlers/user/table";
 import type { ListFormsResponse } from "./handlers/forms/list";
 import type { ViewFormParams, ViewFormResponse } from "./handlers/forms/view";
 import type { SubmitFormParams, SubmitFormResponse } from "./handlers/forms/submit";
+import type { GetFormListParams, GetFormListResponse } from "./handlers/forms/getList"
 
 export const buildApi = (conduit: ConduitInstance) =>
   ({
@@ -35,6 +36,7 @@ export const buildApi = (conduit: ConduitInstance) =>
     "/forms/view": (params: ViewFormParams) => conduit.get<ViewFormResponse>("/forms/view", { params }),
     "/forms/submit": (params: SubmitFormParams, body: object) =>
       conduit.post<SubmitFormResponse>("/forms/submit", body, { params }),
+    "/forms/getList": (params: GetFormListParams) => conduit.get<GetFormListResponse>("/forms/getList", { params }),
 
     // rome-ignore lint/suspicious/noExplicitAny: when used in satisfies its fine
   }) satisfies Record<keyof GeneratedRoutes, (params: any, body: any) => Promise<ConduitResponse<any>>>;
