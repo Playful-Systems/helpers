@@ -12,9 +12,14 @@ import type { CreateUserParams, CreateUserResponse } from "./handlers/user/creat
 import type { CountUsersResponse } from "./handlers/user/count";
 import type { TableDetailsResponse } from "./handlers/user/table";
 
+import type { ListFormsResponse } from "./handlers/forms/list";
+import type { ViewFormParams, ViewFormResponse } from "./handlers/forms/view";
+import type { SubmitFormParams, SubmitFormResponse } from "./handlers/forms/submit";
+
 export const buildApi = (conduit: ConduitInstance) =>
   ({
     "/hello": () => conduit.get("/hello"),
+
     "/users/list": (params: ListUsersParams) => conduit.get<ListUsersResponse>("/users/list", { params }),
     "/users/view": (params: ViewUserParams) => conduit.get<ViewUserResponse>("/users/view", { params }),
     "/users/search": (params: SearchUsersParams) => conduit.get<SearchUsersResponse>("/users/search", { params }),
@@ -25,5 +30,11 @@ export const buildApi = (conduit: ConduitInstance) =>
       conduit.post<CreateUserResponse>("/users/create", body, { params }),
     "/users/count": () => conduit.get<CountUsersResponse>("/users/count"),
     "/users/table": () => conduit.get<TableDetailsResponse>("/users/table"),
+
+    "/forms/list": () => conduit.get<ListFormsResponse>("/forms/list"),
+    "/forms/view": (params: ViewFormParams) => conduit.get<ViewFormResponse>("/forms/view", { params }),
+    "/forms/submit": (params: SubmitFormParams, body: object) =>
+      conduit.post<SubmitFormResponse>("/forms/submit", body, { params }),
+
     // rome-ignore lint/suspicious/noExplicitAny: when used in satisfies its fine
   }) satisfies Record<keyof GeneratedRoutes, (params: any, body: any) => Promise<ConduitResponse<any>>>;
