@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.8.3
+
+### Patch Changes
+
+- 97f7007: don't require lists
+
 ## 0.8.2
 
 ### Patch Changes
