@@ -9,7 +9,7 @@ export type FormConfig = {
   items: Array<{
     slug: string;
     onSubmit: (data: unknown) => Promise<unknown>;
-    lists: {
+    lists?: {
       [key: string]: (query: string) => Promise<Array<unknown>>;
     }
   }>

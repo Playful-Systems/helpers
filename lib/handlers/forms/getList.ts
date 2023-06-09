@@ -30,6 +30,10 @@ export function GetFormList(app: AppConfig, config: FormConfig) {
 
     const { lists } = selectedForm;
 
+    if (!lists) {
+      throw new ApiError("Not Found (404)", "Lists not found");
+    }
+
     const list = lists[params.list];
 
     if (!list) {
