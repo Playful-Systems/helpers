@@ -1,5 +1,12 @@
 # @playful-systems/helpers
 
+## 0.8.2
+
+### Patch Changes
+
+- 6f54cdd: add endpoint to fetch a list
+- f409629: type errors
+
 ## 0.8.1
 
 ### Patch Changes
