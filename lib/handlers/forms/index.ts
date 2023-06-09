@@ -6,9 +6,12 @@ import { ViewForm } from "./view";
 import { SubmitForm } from "./submit";
 
 export type FormConfig = {
-  forms: Array<{
+  items: Array<{
     slug: string;
     onSubmit: (data: unknown) => Promise<unknown>;
+    lists: {
+      [key: string]: (query: string) => Promise<Array<unknown>>;
+    }
   }>
 }
 
