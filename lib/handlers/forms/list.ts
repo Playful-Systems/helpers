@@ -6,7 +6,7 @@ export function ListForms(app: AppConfig, config: FormConfig) {
   return JsonHandler(async (req, res) => {
     return {
       version: "1",
-      result: config.forms.map((form) => {
+      result: config.items.map((form) => {
         const { onSubmit, ...rest } = form;
 
         return rest

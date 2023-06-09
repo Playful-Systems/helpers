@@ -20,7 +20,7 @@ export function ViewForm(app: AppConfig, config: FormConfig) {
       throw new ApiError("Bad Request (400)", params.message);
     }
 
-    const selectedForm = config.forms.find((form) => form.slug === params.slug);
+    const selectedForm = config.items.find((form) => form.slug === params.slug);
 
     if (!selectedForm) {
       throw new ApiError("Not Found (404)", "Form not found");
