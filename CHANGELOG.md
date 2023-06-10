@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.8.4
+
+### Patch Changes
+
+- 3e5e67e: Don't try to json parse the body
+
 ## 0.8.3
 
 ### Patch Changes
