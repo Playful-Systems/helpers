@@ -5,7 +5,7 @@ import { it, expect } from "vitest";
 const axios = Axios.create({
   baseURL: "http://0.0.0.0:3000/api/admin",
   headers: {
-    authorization: "Bearer test-key",
+    "x-api-key": "test-key",
   },
 });
 const api = buildApi(axios);

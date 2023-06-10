@@ -28,7 +28,7 @@ export const adminHandler = <UserItem extends object>(config: AdminConfig<UserIt
   const routes = generateRoutes<UserItem>(adminConfig);
 
   return async (req: NextApiRequest, res: NextApiResponse) => {
-    if (req.headers.authorization !== `Bearer ${adminConfig.api_key}`) {
+    if (req.headers["x-api-key"] !== adminConfig.api_key) {
       return res.status(403).json({ error: "Bad Api Key" });
     }
 
