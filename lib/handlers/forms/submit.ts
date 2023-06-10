@@ -26,9 +26,7 @@ export function SubmitForm(app: AppConfig, config: FormConfig) {
       throw new ApiError("Not Found (404)", "Form not found");
     }
 
-    const body = JSON.parse(req.body) as unknown
-
-    const result = await selectedForm.onSubmit(body)
+    const result = await selectedForm.onSubmit(req.body)
 
     return {
       version: "1",
