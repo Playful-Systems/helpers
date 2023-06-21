@@ -3,7 +3,7 @@ import type { AppConfig } from "../../adminHandler";
 import { ListForms } from "./list";
 import { ViewForm } from "./view";
 import { SubmitForm } from "./submit";
-import { GetFormList } from "./getList"
+import { GetList } from "./getList"
 
 export type FormConfig = {
   items: Array<{
@@ -24,7 +24,7 @@ export const registerFormHandlers = (
     "/forms/list": ListForms(config, feature),
     "/forms/view": ViewForm(config, feature),
     "/forms/submit": SubmitForm(config, feature),
-    "/forms/getList": GetFormList(config, feature)
+    "/forms/getList": GetList(config, feature)
   }
 
 }

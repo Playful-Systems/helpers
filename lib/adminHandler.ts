@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { type UsersConfig, registerUserHandlers } from "./handlers/user";
 import { type FormConfig, registerFormHandlers } from "./handlers/forms";
+import { type DataBrowserConfig, registerDataHandlers } from "./handlers/data";
 import { getUrl } from "./getUrl";
 import { JsonHandler } from "next-json-api";
 
@@ -13,6 +14,7 @@ type AdminConfig<UserItem extends object> = AppConfig & {
   features?: {
     users?: UsersConfig<UserItem>;
     forms?: FormConfig;
+    data?: DataBrowserConfig;
   };
 };
 
@@ -63,6 +65,7 @@ function generateRoutes<UserItem extends object>(adminConfig: FullConfig<UserIte
     "/hello": JsonHandler(async (req, res) => ({ hello: "world" })),
     ...(adminConfig.features?.users ? registerUserHandlers(adminConfig, adminConfig.features.users) : {}),
     ...(adminConfig.features?.forms ? registerFormHandlers(adminConfig, adminConfig.features.forms) : {}),
+    ...(adminConfig.features?.data ? registerDataHandlers(adminConfig, adminConfig.features.data) : {}),
   } satisfies Routes;
 }
 

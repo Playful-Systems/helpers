@@ -11,9 +11,9 @@ const paramsSchema = z.object({
   query: z.string()
 });
 
-export type GetFormListParams = z.input<typeof paramsSchema>;
+export type GetListParams = z.input<typeof paramsSchema>;
 
-export function GetFormList(app: AppConfig, config: FormConfig) {
+export function GetList(app: AppConfig, config: FormConfig) {
   return JsonHandler(async (req, res) => {
 
     const params = parseParams(getUrl(req), paramsSchema);
@@ -49,4 +49,4 @@ export function GetFormList(app: AppConfig, config: FormConfig) {
   });
 }
 
-export type GetFormListResponse = GetResponse<ReturnType<typeof GetFormList>>;
+export type GetListResponse = GetResponse<ReturnType<typeof GetList>>;

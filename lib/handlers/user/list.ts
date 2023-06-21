@@ -5,6 +5,7 @@ import { getUrl } from "../../getUrl";
 import { parseParams } from "../../parseParams";
 import { ApiError, type GetResponse, JsonHandler } from "next-json-api";
 import { z } from "zod";
+import { paginateResults } from "../../paginateResults";
 
 const paramsSchema = z.object({
   cursor: z
@@ -23,35 +24,6 @@ const paramsSchema = z.object({
 
 export type ListUsersParams = z.input<typeof paramsSchema>;
 
-function processResults<UserItem extends object>(
-  result: UserItem[],
-  direction: "forwards" | "backwards",
-  cursor: number,
-  cursorKey: keyof UserItem,
-  amount: number,
-) {
-  const hasExtraResult = result.length > amount;
-
-  if (direction === "forwards") {
-    const viewableResults = result.slice(0, amount);
-    const nextCursor = hasExtraResult ? result[amount]?.[cursorKey] ?? null : null;
-    const newCursor = {
-      back: cursor === 1 ? null : cursor,
-      next: nextCursor,
-    };
-    return { viewableResults, cursor: newCursor };
-  } else {
-    const prevCursor = hasExtraResult ? result[amount - 1]?.[cursorKey] ?? null : null;
-    const nextCursor = result.length > 0 ? result[0]?.[cursorKey] ?? null : null;
-    const newCursor = {
-      back: prevCursor,
-      next: nextCursor,
-    };
-    const viewableResults = hasExtraResult ? result.slice(0, amount).reverse() : result.reverse();
-    return { viewableResults, cursor: newCursor };
-  }
-}
-
 export function ListUsers<UserItem extends object>(app: AppConfig, config: UsersConfig<UserItem>) {
   return JsonHandler(async (req, res) => {
     const params = parseParams(getUrl(req), paramsSchema);
@@ -66,7 +38,7 @@ export function ListUsers<UserItem extends object>(app: AppConfig, config: Users
       throw new ApiError("Bad Gateway (502)", "Failed to list users through admin api");
     }
 
-    const { viewableResults, cursor } = processResults(
+    const { viewableResults, cursor } = paginateResults(
       result,
       params.direction,
       params.cursor,
