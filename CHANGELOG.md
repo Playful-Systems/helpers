@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.9.3
+
+### Patch Changes
+
+- 9216f5e: add column data to resource view
+
 ## 0.9.2
 
 ### Patch Changes
