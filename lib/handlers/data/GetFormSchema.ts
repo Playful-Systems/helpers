@@ -23,20 +23,36 @@ export function GetFormSchema(app: AppConfig, config: DataBrowserConfig) {
 
     const resource = findResource(config, params.slug);
 
-    const { form, columns } = resource
+    const fields = resource.columns
+      .map((column) => ({ ...column, id: crypto.randomUUID() }))
+      .map((column) => {
 
-    const fields = columns.map((column) => {
+        if (column.input === undefined) {
+          return undefined
+        }
 
-      if (column.input === undefined) {
-        return undefined
-      }
+        const { header, ...rest } = column
 
-      const { header, ...rest } = column
-
-      return rest
-    }).filter((field) => field !== undefined)
+        return rest
+      }).filter((field) => field !== undefined)
 
     type Field = NonNullable<typeof fields[number]>
+
+    const form = {
+      ...resource.form,
+      layout: resource.form.layout.map((field) => {
+        if ("type" in field) {
+          return {
+            ...field,
+            id: crypto.randomUUID(),
+            fields: field.fields.map((field) => {
+              return { ...field, id: crypto.randomUUID() }
+            })
+          }
+        }
+        return { ...field, id: crypto.randomUUID() }
+      })
+    }
 
     return {
       version: "1",
