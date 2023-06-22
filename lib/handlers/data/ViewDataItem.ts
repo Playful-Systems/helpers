@@ -34,7 +34,7 @@ export function ViewDataItem(app: AppConfig, config: DataBrowserConfig) {
 
     return {
       version: "1",
-      result,
+      result
     } as const;
   });
 }

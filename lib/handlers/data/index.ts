@@ -183,7 +183,7 @@ type Form = {
   })[];
 }
 
-type Item = object;
+type Item = Record<string, unknown>;
 
 type SearchFilters = ({
   type: "text"
