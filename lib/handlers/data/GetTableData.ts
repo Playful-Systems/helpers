@@ -48,11 +48,11 @@ const paramsSchema = z.object({
   amount: z.string().default("20").transform((v) => Number(v)),
   cursor: Id.optional(),
   direction: z.union([z.literal("forwards"), z.literal("backwards")]).default("forwards"),
-  filters: z.string().transform((value) => {
-    console.log({ value, json: JSON.parse(value) })
-    const x = filters.parse(JSON.parse(value))
-    console.log({ x })
-    return x
+  filters: z.string().optional().transform((value) => {
+    if (value) {
+      return filters.parse(JSON.parse(value))
+    }
+    return []
   })
 })
 
