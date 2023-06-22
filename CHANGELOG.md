@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.9.7
+
+### Patch Changes
+
+- 1d86116: pass through the item id
+
 ## 0.9.6
 
 ### Patch Changes
