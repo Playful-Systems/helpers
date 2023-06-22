@@ -26,6 +26,7 @@ type BaseInput = {
 
 type IdColumnDef = {
   type: "id"
+  label: string;
   value: string;
   header?: BaseHeader & {}
   input?: BaseInput & {
@@ -39,6 +40,7 @@ type IdColumnDef = {
 
 type TextColumnDef = {
   type: "text"
+  label: string;
   value: string;
   header?: BaseHeader & {
     prefix?: string;
@@ -54,6 +56,7 @@ type TextColumnDef = {
 
 type ImageColumnDef = {
   type: "image"
+  label: string;
   value: string;
   header?: BaseHeader & {}
   input?: BaseInput & {
@@ -65,6 +68,7 @@ type ImageColumnDef = {
 
 type DateColumnDef = {
   type: "date"
+  label: string;
   value: string;
   header?: BaseHeader & {
     format: string
@@ -77,6 +81,7 @@ type DateColumnDef = {
 
 type ResourceColumnDef = {
   type: "resource"
+  label: string;
   value: string;
   header?: BaseHeader & {}
   input?: BaseInput & {}
@@ -84,6 +89,7 @@ type ResourceColumnDef = {
 
 type TextArrayColumnDef = {
   type: "text-array"
+  label: string;
   value: string;
   header?: BaseHeader & {}
   input?: BaseInput & {}
@@ -91,6 +97,7 @@ type TextArrayColumnDef = {
 
 type NumberColumnDef = {
   type: "number"
+  label: string;
   value: string;
   header?: BaseHeader & {}
   input?: BaseInput & {
@@ -103,6 +110,7 @@ type NumberColumnDef = {
 
 type BooleanColumnDef = {
   type: "boolean"
+  label: string;
   value: string;
   header?: BaseHeader & {}
   input?: BaseInput & {}
@@ -110,6 +118,7 @@ type BooleanColumnDef = {
 
 type TimeColumnDef = {
   type: "time"
+  label: string;
   value: string;
   header?: BaseHeader & {}
   input?: BaseInput & {}
@@ -117,6 +126,7 @@ type TimeColumnDef = {
 
 type ImageArrayColumnDef = {
   type: "image-array"
+  label: string;
   value: string;
   header?: BaseHeader & {}
   input?: BaseInput & {}
@@ -124,6 +134,7 @@ type ImageArrayColumnDef = {
 
 type VideoColumnDef = {
   type: "video"
+  label: string;
   value: string;
   header?: BaseHeader & {}
   input?: BaseInput & {}
@@ -131,6 +142,7 @@ type VideoColumnDef = {
 
 type ContentColumnDef = {
   type: "content"
+  label: string;
   value: string;
   header?: BaseHeader & {}
   input?: BaseInput & {}
@@ -138,6 +150,7 @@ type ContentColumnDef = {
 
 type ContentArrayColumnDef = {
   type: "content-array"
+  label: string;
   value: string;
   header?: BaseHeader & {}
   input?: BaseInput & {}

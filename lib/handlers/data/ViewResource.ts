@@ -23,14 +23,23 @@ export function ViewResource(app: AppConfig, config: DataBrowserConfig) {
 
     const resource = findResource(config, params.slug)
 
-    const { slug, label, cursor } = resource
+    const { slug, label, cursor, columns } = resource
+
+    const columnData = columns.map((column) => {
+      return {
+        type: column.type,
+        label: column.label,
+        value: column.value,
+      }
+    })
 
     return {
       version: "1",
       result: {
         slug,
         label,
-        cursor
+        cursor,
+        columns: columnData
       },
     } as const;
   });
