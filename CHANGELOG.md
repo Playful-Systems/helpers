@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.9.8
+
+### Patch Changes
+
+- 7831dd7: set object to have string as key
+
 ## 0.9.7
 
 ### Patch Changes
