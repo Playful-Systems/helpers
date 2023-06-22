@@ -26,7 +26,7 @@ export function DeleteDataItem(app: AppConfig, config: DataBrowserConfig) {
 
     const resource = findResource(config, params.slug);
 
-    const id = await catcher(resource.delete(req.body));
+    const id = await catcher(resource.delete(params.id));
 
     if (id instanceof Error) {
       throw new ApiError("Internal Server Error (500)", id.message);
