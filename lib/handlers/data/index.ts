@@ -11,10 +11,12 @@ import { UpdateDataItem } from "./UpdateDataItem";
 import { DeleteDataItem } from "./DeleteDataItem";
 import { ViewDataItem } from "./ViewDataItem";
 import { CountDataItems } from "./CountDataItems";
+import { ViewResource } from "./ViewResource";
 import { Id } from "./Id";
 
 type BaseHeader = {
   label: string;
+  order: number;
 }
 
 type BaseInput = {
@@ -217,7 +219,8 @@ export const registerDataHandlers = (
   config: AppConfig,
   feature: DataBrowserConfig
 ) => ({
-  "/data/list": ListResources(config, feature),
+  "/data/resources/list": ListResources(config, feature),
+  "/data/resources/view": ViewResource(config, feature),
   "/data/table/schema": GetTableSchema(config, feature),
   "/data/table/data": GetTableData(config, feature),
   "/data/table/search": SearchTableData(config, feature),
