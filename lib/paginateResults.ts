@@ -1,7 +1,7 @@
 export function paginateResults<UserItem extends object>(
   result: UserItem[],
   direction: "forwards" | "backwards",
-  cursor: number | string,
+  cursor: number | string | undefined,
   cursorKey: keyof UserItem,
   amount: number
 ) {
@@ -11,7 +11,7 @@ export function paginateResults<UserItem extends object>(
     const viewableResults = result.slice(0, amount);
     const nextCursor = hasExtraResult ? result[amount]?.[cursorKey] ?? null : null;
     const newCursor = {
-      back: cursor === 1 ? null : cursor,
+      back: cursor ?? null,
       next: nextCursor,
     };
     return { viewableResults, cursor: newCursor };

@@ -46,7 +46,7 @@ type Filters = z.input<typeof filters>;
 const paramsSchema = z.object({
   slug: z.string(),
   amount: z.string().default("20").transform((v) => Number(v)),
-  cursor: Id,
+  cursor: Id.optional(),
   direction: z.union([z.literal("forwards"), z.literal("backwards")]).default("forwards"),
   filters: z.string().transform((value) => {
     console.log({ value, json: JSON.parse(value) })

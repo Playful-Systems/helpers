@@ -215,7 +215,7 @@ export type DataBrowserResource = {
   columns: ColumnDef[];
   cursor: string;
   form: Form;
-  list: (amount: number, cursor: Id, direction: "backwards" | "forwards", filters: SearchFilters) => Promise<Array<Item>>;
+  list: (amount: number, cursor: Id | undefined, direction: "backwards" | "forwards", filters: SearchFilters) => Promise<Array<Item>>;
   view: (id: Id) => Promise<Item>;
   search: (query: string) => Promise<Array<Item>>;
   update: (id: Id, data: Item) => Promise<Id>;
