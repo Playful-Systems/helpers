@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.9.4
+
+### Patch Changes
+
+- aed7521: make cursor optional
+
 ## 0.9.3
 
 ### Patch Changes
