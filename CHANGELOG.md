@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.9.5
+
+### Patch Changes
+
+- 8ba2423: only pass through filters if necessary
+
 ## 0.9.4
 
 ### Patch Changes
