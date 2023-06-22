@@ -56,7 +56,7 @@ const paramsSchema = z.object({
   })
 })
 
-export type GetTableDataParams = Omit<z.input<typeof paramsSchema>, "filters"> & { filters: Filters };
+export type GetTableDataParams = Omit<z.input<typeof paramsSchema>, "filters"> & { filters?: Filters };
 
 export function GetTableData(app: AppConfig, config: DataBrowserConfig) {
   return JsonHandler(async (req, res) => {

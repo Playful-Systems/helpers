@@ -58,8 +58,14 @@ export const buildApi = (conduit: ConduitInstance) =>
     "/data/form/list": (params: GetFormListParams) => conduit.get<GetFormListResponse>("/data/form/list", { params }),
     "/data/form/schema": (params: GetFormSchemaParams) =>
       conduit.get<GetFormSchemaResponse>("/data/form/schema", { params }),
-    "/data/table/data": (params: GetTableDataParams) =>
-      conduit.get<GetTableDataResponse>("/data/table/data", { params: { ...params, filters: JSON.stringify(params.filters) } }),
+    "/data/table/data": (params: GetTableDataParams) => {
+      console.log({ params })
+      if (params.filters) {
+        return conduit.get<GetTableDataResponse>("/data/table/data", { params: { ...params, filters: JSON.stringify(params.filters) } });
+      }
+      const { filters, ...rest } = params;
+      return conduit.get<GetTableDataResponse>("/data/table/data", { params: rest });
+    },
     "/data/table/schema": (params: GetTableSchemaParams) =>
       conduit.get<GetTableSchemaResponse>("/data/table/schema", { params }),
     "/data/resources/list": () => conduit.get<ListResourcesResponse>("/data/resources/list"),
