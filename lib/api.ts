@@ -28,6 +28,7 @@ import type { ListResourcesResponse } from "./handlers/data/ListResources";
 import type { SearchTableDataParams, SearchTableDataResponse } from "./handlers/data/SearchTableData";
 import type { UpdateDataItemParams, UpdateDataItemResponse } from "./handlers/data/UpdateDataItem";
 import type { ViewDataItemParams, ViewDataItemResponse } from "./handlers/data/ViewDataItem";
+import type { ViewResourceParams, ViewResourceResponse } from "./handlers/data/ViewResource";
 
 export const buildApi = (conduit: ConduitInstance) =>
   ({
@@ -54,19 +55,21 @@ export const buildApi = (conduit: ConduitInstance) =>
     "/data/create": (params: CreateDataItemParams, body: object) =>
       conduit.post<CreateDataItemResponse>("/data/create", body, { params }),
     "/data/delete": (params: DeleteDataItemParams) => conduit.delete<DeleteDataItemResponse>("/data/delete", { params }),
-    "/data/form/list": (params: GetListParams) => conduit.get<GetListResponse>("/data/form/list", { params }),
+    "/data/form/list": (params: GetFormListParams) => conduit.get<GetFormListResponse>("/data/form/list", { params }),
     "/data/form/schema": (params: GetFormSchemaParams) =>
       conduit.get<GetFormSchemaResponse>("/data/form/schema", { params }),
     "/data/table/data": (params: GetTableDataParams) =>
       conduit.get<GetTableDataResponse>("/data/table/data", { params: { ...params, filters: JSON.stringify(params.filters) } }),
     "/data/table/schema": (params: GetTableSchemaParams) =>
       conduit.get<GetTableSchemaResponse>("/data/table/schema", { params }),
-    "/data/list": () => conduit.get<ListResourcesResponse>("/data/list"),
+    "/data/resources/list": () => conduit.get<ListResourcesResponse>("/data/resources/list"),
     "/data/table/search": (params: SearchTableDataParams) =>
       conduit.get<SearchTableDataResponse>("/data/table/search", { params }),
     "/data/update": (params: UpdateDataItemParams, body: object) =>
       conduit.patch<UpdateDataItemResponse>("/data/update", body, { params }),
     "/data/view": (params: ViewDataItemParams) => conduit.get<ViewDataItemResponse>("/data/view", { params }),
+    "/data/resources/view": (params: ViewResourceParams) =>
+      conduit.get<ViewResourceResponse>("/data/resources/view", { params }),
 
     // rome-ignore lint/suspicious/noExplicitAny: when used in satisfies its fine
   }) satisfies Record<keyof GeneratedRoutes, (params: any, body: any) => Promise<ConduitResponse<any>>>;
