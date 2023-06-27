@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.9.9
+
+### Patch Changes
+
+- fc6e731: update the types
+
 ## 0.9.8
 
 ### Patch Changes
