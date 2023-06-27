@@ -74,6 +74,7 @@ type DateColumnDef = {
     format: string
   };
   input?: BaseInput & {
+    placeholder: string;
     minimumDate?: Date;
     maximumDate?: Date;
   }
@@ -84,7 +85,14 @@ type ResourceColumnDef = {
   label: string;
   value: string;
   header?: BaseHeader & {}
-  input?: BaseInput & {}
+  input?: BaseInput & {
+    placeholder: string;
+    terms: {
+      notFound: string;
+      search: string;
+    },
+    resource: DataBrowserResource
+  }
 }
 
 type TextArrayColumnDef = {
@@ -156,6 +164,28 @@ type ContentArrayColumnDef = {
   input?: BaseInput & {}
 }
 
+type MarkdownColumnDef = {
+  type: "markdown"
+  label: string;
+  value: string;
+  header?: BaseHeader & {}
+  input?: BaseInput & {}
+}
+
+type DropdownColumnDef = {
+  type: "dropdown"
+  label: string;
+  value: string;
+  header?: BaseHeader & {}
+  input?: BaseInput & {
+    placeholder: string;
+    options: {
+      key: string;
+      label: string;
+    }[]
+  }
+}
+
 type ColumnDef =
   | IdColumnDef
   | TextColumnDef
@@ -170,6 +200,8 @@ type ColumnDef =
   | VideoColumnDef
   | ContentColumnDef
   | ContentArrayColumnDef
+  | MarkdownColumnDef
+  | DropdownColumnDef
 
 type Form = {
   title: string
