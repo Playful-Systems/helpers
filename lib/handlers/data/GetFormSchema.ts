@@ -33,6 +33,13 @@ export function GetFormSchema(app: AppConfig, config: DataBrowserConfig) {
 
         const { header, ...rest } = column
 
+        if (rest.type === "resource") {
+          // removing 'resource' from the input
+          // the frontend doesn't need to know about it
+          const { resource, ...field } = rest
+          return field
+        }
+
         return rest
       }).filter((field) => field !== undefined)
 

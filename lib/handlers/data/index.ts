@@ -84,6 +84,7 @@ type ResourceColumnDef = {
   type: "resource"
   label: string;
   value: string;
+  resource: DataBrowserResource,
   header?: BaseHeader & {}
   input?: BaseInput & {
     placeholder: string;
@@ -91,7 +92,9 @@ type ResourceColumnDef = {
       notFound: string;
       search: string;
     },
-    resource: DataBrowserResource
+  },
+  display: {
+    key: string;
   }
 }
 
