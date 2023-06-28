@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.9.10
+
+### Patch Changes
+
+- 95a3fd1: move resources type
+
 ## 0.9.9
 
 ### Patch Changes
