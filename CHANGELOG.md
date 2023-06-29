@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.9.11
+
+### Patch Changes
+
+- 3a3e0c7: add some more types
+
 ## 0.9.10
 
 ### Patch Changes
