@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.9.12
+
+### Patch Changes
+
+- 192bcef: clean up the handlers
+
 ## 0.9.11
 
 ### Patch Changes
