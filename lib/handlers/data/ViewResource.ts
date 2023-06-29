@@ -26,6 +26,18 @@ export function ViewResource(app: AppConfig, config: DataBrowserConfig) {
     const { slug, label, cursor, columns } = resource
 
     const columnData = columns.map((column) => {
+
+      if (column.type === "resource" || column.type === "resource-array") {
+        return {
+          type: column.type,
+          label: column.label,
+          value: column.value,
+          display: column.display,
+          plugins: column.plugins,
+        }
+      }
+
+
       return {
         type: column.type,
         label: column.label,

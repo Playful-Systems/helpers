@@ -96,7 +96,8 @@ type ResourceColumnDef = {
   display: {
     idKey: string;
     nameKey: string;
-  }
+  },
+  plugins?: ""[]
 }
 
 type ResourceArrayColumnDef = {
@@ -115,7 +116,8 @@ type ResourceArrayColumnDef = {
   display: {
     idKey: string;
     nameKey: string;
-  }
+  },
+  plugins?: ("content-array")[]
 }
 
 type TextArrayColumnDef = {
