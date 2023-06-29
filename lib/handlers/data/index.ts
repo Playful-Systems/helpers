@@ -22,6 +22,7 @@ type BaseHeader = {
 type BaseInput = {
   label?: string; // only needs to be defined to over-write the column label
   description: string;
+  required?: boolean; // defaults to true
 }
 
 type IdColumnDef = {
