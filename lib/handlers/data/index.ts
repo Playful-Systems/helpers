@@ -15,12 +15,12 @@ import { ViewResource } from "./ViewResource";
 import { Id } from "./Id";
 
 type BaseHeader = {
-  label: string;
+  label?: string; // only needs to be defined to over-write the column label
   order: number;
 }
 
 type BaseInput = {
-  label: string;
+  label?: string; // only needs to be defined to over-write the column label
   description: string;
 }
 
@@ -94,7 +94,27 @@ type ResourceColumnDef = {
     },
   },
   display: {
-    key: string;
+    idKey: string;
+    nameKey: string;
+  }
+}
+
+type ResourceArrayColumnDef = {
+  type: "resource-array"
+  label: string;
+  value: string;
+  resource: DataBrowserResource,
+  header?: BaseHeader & {}
+  input?: BaseInput & {
+    placeholder: string;
+    terms: {
+      notFound: string;
+      search: string;
+    },
+  },
+  display: {
+    idKey: string;
+    nameKey: string;
   }
 }
 
@@ -195,6 +215,7 @@ type ColumnDef =
   | ImageColumnDef
   | DateColumnDef
   | ResourceColumnDef
+  | ResourceArrayColumnDef
   | TextArrayColumnDef
   | NumberColumnDef
   | BooleanColumnDef
