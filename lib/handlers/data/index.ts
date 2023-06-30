@@ -98,7 +98,7 @@ type ResourceColumnDef = {
     idKey: string;
     nameKey: string;
   },
-  plugins?: ""[]
+  subFields?: ColumnDef[]
 }
 
 type ResourceArrayColumnDef = {
@@ -118,7 +118,7 @@ type ResourceArrayColumnDef = {
     idKey: string;
     nameKey: string;
   },
-  plugins?: ("content-array")[]
+  subFields?: ColumnDef[]
 }
 
 type TextArrayColumnDef = {

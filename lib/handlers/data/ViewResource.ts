@@ -33,7 +33,7 @@ export function ViewResource(app: AppConfig, config: DataBrowserConfig) {
           label: column.label,
           value: column.value,
           display: column.display,
-          plugins: column.plugins,
+          subFields: column.subFields,
         }
       }
 
