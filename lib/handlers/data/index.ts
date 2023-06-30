@@ -14,18 +14,18 @@ import { CountDataItems } from "./CountDataItems";
 import { ViewResource } from "./ViewResource";
 import { Id } from "./Id";
 
-type BaseHeader = {
+export type BaseHeader = {
   label?: string; // only needs to be defined to over-write the column label
   order: number;
 }
 
-type BaseInput = {
+export type BaseInput = {
   label?: string; // only needs to be defined to over-write the column label
   description: string;
   required?: boolean; // defaults to true
 }
 
-type IdColumnDef = {
+export type IdColumnDef = {
   type: "id"
   label: string;
   value: string;
@@ -39,7 +39,7 @@ type IdColumnDef = {
   }
 }
 
-type TextColumnDef = {
+export type TextColumnDef = {
   type: "text"
   label: string;
   value: string;
@@ -55,7 +55,7 @@ type TextColumnDef = {
   }
 }
 
-type ImageColumnDef = {
+export type ImageColumnDef = {
   type: "image"
   label: string;
   value: string;
@@ -67,7 +67,7 @@ type ImageColumnDef = {
   }
 }
 
-type DateColumnDef = {
+export type DateColumnDef = {
   type: "date"
   label: string;
   value: string;
@@ -81,7 +81,7 @@ type DateColumnDef = {
   }
 }
 
-type ResourceColumnDef = {
+export type ResourceColumnDef = {
   type: "resource"
   label: string;
   value: string;
@@ -101,7 +101,7 @@ type ResourceColumnDef = {
   subFields?: ColumnDef[]
 }
 
-type ResourceArrayColumnDef = {
+export type ResourceArrayColumnDef = {
   type: "resource-array"
   label: string;
   value: string;
@@ -121,7 +121,7 @@ type ResourceArrayColumnDef = {
   subFields?: ColumnDef[]
 }
 
-type TextArrayColumnDef = {
+export type TextArrayColumnDef = {
   type: "text-array"
   label: string;
   value: string;
@@ -129,7 +129,7 @@ type TextArrayColumnDef = {
   input?: BaseInput & {}
 }
 
-type NumberColumnDef = {
+export type NumberColumnDef = {
   type: "number"
   label: string;
   value: string;
@@ -142,7 +142,7 @@ type NumberColumnDef = {
   }
 }
 
-type BooleanColumnDef = {
+export type BooleanColumnDef = {
   type: "boolean"
   label: string;
   value: string;
@@ -150,7 +150,7 @@ type BooleanColumnDef = {
   input?: BaseInput & {}
 }
 
-type TimeColumnDef = {
+export type TimeColumnDef = {
   type: "time"
   label: string;
   value: string;
@@ -158,7 +158,7 @@ type TimeColumnDef = {
   input?: BaseInput & {}
 }
 
-type ImageArrayColumnDef = {
+export type ImageArrayColumnDef = {
   type: "image-array"
   label: string;
   value: string;
@@ -166,7 +166,7 @@ type ImageArrayColumnDef = {
   input?: BaseInput & {}
 }
 
-type VideoColumnDef = {
+export type VideoColumnDef = {
   type: "video"
   label: string;
   value: string;
@@ -174,7 +174,7 @@ type VideoColumnDef = {
   input?: BaseInput & {}
 }
 
-type ContentColumnDef = {
+export type ContentColumnDef = {
   type: "content"
   label: string;
   value: string;
@@ -182,7 +182,7 @@ type ContentColumnDef = {
   input?: BaseInput & {}
 }
 
-type ContentArrayColumnDef = {
+export type ContentArrayColumnDef = {
   type: "content-array"
   label: string;
   value: string;
@@ -190,7 +190,7 @@ type ContentArrayColumnDef = {
   input?: BaseInput & {}
 }
 
-type MarkdownColumnDef = {
+export type MarkdownColumnDef = {
   type: "markdown"
   label: string;
   value: string;
@@ -198,7 +198,7 @@ type MarkdownColumnDef = {
   input?: BaseInput & {}
 }
 
-type DropdownColumnDef = {
+export type DropdownColumnDef = {
   type: "dropdown"
   label: string;
   value: string;
@@ -212,7 +212,7 @@ type DropdownColumnDef = {
   }
 }
 
-type ColumnDef =
+export type ColumnDef =
   | IdColumnDef
   | TextColumnDef
   | ImageColumnDef
@@ -230,7 +230,7 @@ type ColumnDef =
   | MarkdownColumnDef
   | DropdownColumnDef
 
-type Form = {
+export type Form = {
   title: string
   layout: ({
     value: string;
@@ -242,9 +242,9 @@ type Form = {
   })[];
 }
 
-type Item = Record<string, unknown>;
+export type Item = Record<string, unknown>;
 
-type SearchFilters = ({
+export type SearchFilters = ({
   type: "text"
   value: string;
   query: string;
