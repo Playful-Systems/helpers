@@ -212,6 +212,17 @@ export type DropdownColumnDef = {
   }
 }
 
+export type LocationColumnDef = {
+  type: "location"
+  label: string;
+  value: string;
+  header?: BaseHeader & {}
+  input?: BaseInput & {
+    longitudeKey: string;
+    latitudeKey: string;
+  }
+}
+
 export type ColumnDef =
   | IdColumnDef
   | TextColumnDef
@@ -229,6 +240,7 @@ export type ColumnDef =
   | ContentArrayColumnDef
   | MarkdownColumnDef
   | DropdownColumnDef
+  | LocationColumnDef
 
 export type Form = {
   title: string
