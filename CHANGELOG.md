@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.9.15
+
+### Patch Changes
+
+- eb736a8: add location columndef
+
 ## 0.9.14
 
 ### Patch Changes
