@@ -29,6 +29,7 @@ export type IdColumnDef = {
   type: "id"
   label: string;
   value: string;
+  link?: string;
   header?: BaseHeader & {}
   input?: BaseInput & {
     placeholder?: string;
@@ -230,11 +231,10 @@ export type LocationColumnDef = {
   type: "location"
   label: string;
   value: string;
+  longitudeKey: string;
+  latitudeKey: string;
   header?: BaseHeader & {}
-  input?: BaseInput & {
-    longitudeKey: string;
-    latitudeKey: string;
-  }
+  input?: BaseInput & {}
 }
 
 export type ColumnDef =
