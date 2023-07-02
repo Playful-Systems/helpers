@@ -212,6 +212,20 @@ export type DropdownColumnDef = {
   }
 }
 
+export type DropdownArrayColumnDef = {
+  type: "dropdown-array"
+  label: string;
+  value: string;
+  header?: BaseHeader & {}
+  input?: BaseInput & {
+    placeholder: string;
+    options: {
+      key: string;
+      label: string;
+    }[]
+  }
+}
+
 export type LocationColumnDef = {
   type: "location"
   label: string;
@@ -240,6 +254,7 @@ export type ColumnDef =
   | ContentArrayColumnDef
   | MarkdownColumnDef
   | DropdownColumnDef
+  | DropdownArrayColumnDef
   | LocationColumnDef
 
 export type Form = {
