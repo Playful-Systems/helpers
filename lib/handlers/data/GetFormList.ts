@@ -4,9 +4,12 @@ import type { AppConfig } from "../../adminHandler";
 import { parseParams } from "../../parseParams";
 import { getUrl } from "../../getUrl";
 import { ApiError, JsonHandler, type GetResponse } from "next-json-api";
+import { findResource } from "./findResource";
 
 const paramsSchema = z.object({
   slug: z.string(),
+  resource: z.string(),
+  query: z.string().default("")
 });
 
 export type GetFormListParams = z.input<typeof paramsSchema>;
@@ -20,12 +23,24 @@ export function GetFormList(app: AppConfig, config: DataBrowserConfig) {
       throw new ApiError("Bad Request (400)", params.message);
     }
 
-    throw new ApiError("Not Implemented (501)", "This endpoint is not implemented yet.");
+    const resource = findResource(config, params.slug);
 
-    // return {
-    //   version: "1",
-    //   result: ,
-    // } as const;
+    const column = resource.columns.find((column) => column.value === params.resource);
+
+    if (!column) {
+      throw new ApiError("Bad Request (400)", `Resource ${params.resource} not found`);
+    }
+
+    if (column.type !== "resource" && column.type !== "resource-array") {
+      throw new ApiError("Bad Request (400)", `Resource ${params.resource} is not a resource`);
+    }
+
+    const result = await column.resource.search(params.query);
+
+    return {
+      version: "1",
+      result: result,
+    } as const;
   });
 }
 
