@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.9.17
+
+### Patch Changes
+
+- 76eaaec: move some types around
+
 ## 0.9.16
 
 ### Patch Changes
