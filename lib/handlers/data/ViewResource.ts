@@ -37,6 +37,34 @@ export function ViewResource(app: AppConfig, config: DataBrowserConfig) {
         }
       }
 
+      if (column.type === "id") {
+        return {
+          type: column.type,
+          label: column.label,
+          value: column.value,
+          link: column.link,
+        }
+      }
+
+      if (column.type === "dropdown" || column.type === "dropdown-array") {
+        return {
+          type: column.type,
+          label: column.label,
+          value: column.value,
+          options: column.options,
+        }
+      }
+
+      if (column.type === "location") {
+        return {
+          type: column.type,
+          label: column.label,
+          value: column.value,
+          longitudeKey: column.longitudeKey,
+          latitudeKey: column.latitudeKey,
+        }
+      }
+
 
       return {
         type: column.type,

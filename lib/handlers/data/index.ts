@@ -203,13 +203,13 @@ export type DropdownColumnDef = {
   type: "dropdown"
   label: string;
   value: string;
+  options: {
+    key: string;
+    label: string;
+  }[];
   header?: BaseHeader & {}
   input?: BaseInput & {
     placeholder: string;
-    options: {
-      key: string;
-      label: string;
-    }[]
   }
 }
 
@@ -217,13 +217,13 @@ export type DropdownArrayColumnDef = {
   type: "dropdown-array"
   label: string;
   value: string;
+  options: {
+    key: string;
+    label: string;
+  }[];
   header?: BaseHeader & {}
   input?: BaseInput & {
     placeholder: string;
-    options: {
-      key: string;
-      label: string;
-    }[]
   }
 }
 
