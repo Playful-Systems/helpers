@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.10.2
+
+### Patch Changes
+
+- 0d95349: move idKey and nameKey to top level as needed at all points
+
 ## 0.10.1
 
 ### Patch Changes
