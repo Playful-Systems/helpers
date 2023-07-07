@@ -32,7 +32,8 @@ export function ViewResource(app: AppConfig, config: DataBrowserConfig) {
           type: column.type,
           label: column.label,
           value: column.value,
-          display: column.display,
+          idKey: column.idKey,
+          nameKey: column.nameKey,
           subFields: column.subFields,
         }
       }

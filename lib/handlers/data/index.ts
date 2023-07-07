@@ -87,6 +87,8 @@ export type ResourceColumnDef = {
   label: string;
   value: string;
   resource: DataBrowserResource,
+  idKey: string;
+  nameKey: string;
   header?: BaseHeader & {}
   input?: BaseInput & {
     placeholder: string;
@@ -94,10 +96,6 @@ export type ResourceColumnDef = {
       notFound: string;
       search: string;
     },
-  },
-  display: {
-    idKey: string;
-    nameKey: string;
   },
   subFields?: ColumnDef[]
 }
@@ -107,6 +105,8 @@ export type ResourceArrayColumnDef = {
   label: string;
   value: string;
   resource: DataBrowserResource,
+  idKey: string;
+  nameKey: string;
   header?: BaseHeader & {}
   input?: BaseInput & {
     placeholder: string;
@@ -114,10 +114,6 @@ export type ResourceArrayColumnDef = {
       notFound: string;
       search: string;
     },
-  },
-  display: {
-    idKey: string;
-    nameKey: string;
   },
   subFields?: ColumnDef[]
 }

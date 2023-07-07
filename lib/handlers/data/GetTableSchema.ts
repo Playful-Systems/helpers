@@ -36,7 +36,7 @@ export function GetTableSchema(app: AppConfig, config: DataBrowserConfig) {
       if (rest.type === "resource" || rest.type === "resource-array") {
         // removing 'resource' from the input
         // the frontend doesn't need to know about it
-        const { resource, display, subFields, ...field } = rest
+        const { resource, subFields, ...field } = rest
         return field
       }
 
