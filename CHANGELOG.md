@@ -1,5 +1,11 @@
 # @playful-systems/helpers
 
+## 0.10.3
+
+### Patch Changes
+
+- 996a717: need the subFields in the form schema
+
 ## 0.10.2
 
 ### Patch Changes
