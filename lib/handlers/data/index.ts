@@ -82,6 +82,20 @@ export type DateColumnDef = {
   }
 }
 
+export type DateTimeColumnDef = {
+  type: "datetime"
+  label: string;
+  value: string;
+  header?: BaseHeader & {
+    format: string
+  };
+  input?: BaseInput & {
+    placeholder: string;
+    minimumDate?: Date;
+    maximumDate?: Date;
+  }
+}
+
 export type ResourceColumnDef = {
   type: "resource"
   label: string;
@@ -238,6 +252,7 @@ export type ColumnDef =
   | TextColumnDef
   | ImageColumnDef
   | DateColumnDef
+  | DateTimeColumnDef
   | ResourceColumnDef
   | ResourceArrayColumnDef
   | TextArrayColumnDef
